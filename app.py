@@ -1,12 +1,12 @@
 # flask_app/app.py
 from flask import Flask, render_template
-from temperature_converter import temperature_converter
-from number_formatter import number_formatter
+from src.finder import finder
+from src.formatter import formatter
 
 app = Flask(__name__)
 
-app.register_blueprint(temperature_converter, url_prefix='/temperature')
-app.register_blueprint(number_formatter, url_prefix='/number')
+app.register_blueprint(finder, url_prefix='/finder')
+app.register_blueprint(formatter, url_prefix='/formatter')
 
 @app.route('/')
 def index():
