@@ -1,7 +1,7 @@
 <!-- flask_app/templates/temperature_converter.html -->
 {% extends 'layout.html' %}
 
-{% block title %}Temperature Converter{% endblock %}
+{% block title %}Number Converter{% endblock %}
 
 {% block content %}
     <h2 class="mb-4">Number Formatter</h2>
@@ -9,7 +9,7 @@
     <form method="post" action="/number">
         <div class="form-group">
             <label for="input_number">Enter Number: </label>
-            <button class="btn btn-outline-secondary mb-3" onclick="pasteToInput('input_number')">
+            <button class="btn btn-outline-secondary mb-3" role="button" onclick="pasteToInput('input_number')">
                 <i class="fas fa-paste"></i>
             </button>
             <textarea class="form-control" name="input_number" id="input_number" cols="30" rows="10" required></textarea>
@@ -17,9 +17,8 @@
         <div class="form-group">
             <label for="format_type">Format Type:</label>
             <select class="form-control" id="format_type" name="format_type" required>
-                <option value="decimal">Decimal</option>
+                <option value="tupple">tupple</option>
                 <option value="binary">Binary</option>
-                <option value="hexadecimal">Hexadecimal</option>
             </select>
         </div>
 
