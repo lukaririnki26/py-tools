@@ -1,0 +1,35 @@
+{% extends 'layout.html' %}
+
+{% block title %}Excel To JSON{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">Excel To JSON</h2>
+
+    <form action="/excel_to_json" method="post" enctype="multipart/form-data">
+        <div class="input-group mb-3">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="fileInput" name="file" accept=".xlsx, .xls" required>
+                <label class="custom-file-label" for="fileInput">Choose file...</label>
+            </div>
+            <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">Convert to JSON</button>
+            </div>
+        </div>
+    </form>
+
+    {% if result %}
+        <div class="mt-4">
+            <label>Result:</label>
+            <button class="btn btn-outline-secondary" onclick="copyToClipboard('result')">
+                <i class="fas fa-copy"></i>
+            </button>
+            <form action="/excel_to_json/download" method="post" class="mt-3">
+                <input type="hidden" name="data" value='{{ result | tojson }}'>
+                <button type="submit" class="btn btn-success">Download JSON</button>
+            </form>
+            <p class="mt-3" id="result">{{ result | tojson(indent=2) }}</p>
+        </div>
+    {% endif %}
+
+    
+{% endblock %}
