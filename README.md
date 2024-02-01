@@ -1,12 +1,15 @@
 Py Tools is Simple Data Mutator and Analys created with flask
 
 Please install flask first if not yet installed
-pip install flask
+
+    pip install flask
 
 To run temporary :
-python3 app.py
+
+    python3 app.py
 
 To run with reverse proxy run following commands:
+
     pip install gunicorn
     npm install pm2 -g
     pm2 start 'gunicorn -w 4 -b 0.0.0.0:5000 app:app' --name py-tools
@@ -39,6 +42,7 @@ create nginx config
     }
 
 and activate with
-sudo ln -s /etc/nginx/sites-available/py-tools.test /etc/nginx/sites-enabled
+
+    sudo ln -s /etc/nginx/sites-available/py-tools.test /etc/nginx/sites-enabled
 
 
