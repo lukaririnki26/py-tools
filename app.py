@@ -5,6 +5,7 @@ from src.formatter import formatter
 from src.excel_to_json import excel_to_json
 from src.json_to_excel import json_to_excel
 from src.html_table_to_excel import html_table_to_excel
+from src.document_merger import document_merger
 
 app = Flask(__name__)
 
@@ -13,6 +14,7 @@ app.register_blueprint(formatter, url_prefix='/formatter')
 app.register_blueprint(excel_to_json, url_prefix='/excel_to_json')
 app.register_blueprint(json_to_excel, url_prefix='/json_to_excel')
 app.register_blueprint(html_table_to_excel, url_prefix='/html_table_to_excel')
+app.register_blueprint(document_merger, url_prefix='/document_merger')
 
 @app.route('/')
 def index():
