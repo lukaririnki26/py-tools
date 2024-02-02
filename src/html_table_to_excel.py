@@ -17,7 +17,6 @@ def _html_table_to_excel(html_content, table_id, sheet_name='converted_table'):
     soup = BeautifulSoup(html_content, 'html.parser')
 
     table = soup.find(id=table_id)
-    print(table)
     if not table:
         raise ValueError("No table found in HTML content")
 
@@ -54,6 +53,7 @@ def convert():
         html_content = fetch_html_content(url)
         excel_output = _html_table_to_excel(html_content, table_id,  sheet_name='converted_table')
     except Exception as e:
-        return f"Error: {str(e)}"
+        error = f"Error: {str(e)}"
+        return render_template('html_table_to_excel.html', error=error)
 
     return send_file(excel_output, download_name='converted_table.xlsx', as_attachment=True)

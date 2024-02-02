@@ -11,7 +11,8 @@ def _formatter(format_input, format_type):
     elif format_type == 'binary':
         return bin(int(format_input))[2:]
     else:
-        return "Invalid format type for number."
+        error = f"Error: Invalid format type for number"
+        return render_template('formatter.html', error=error)
 
 
 @formatter.route('/', methods=['GET', 'POST'])
@@ -27,6 +28,7 @@ def formatter_route():
             result = _formatter(format_input, format_type)
 
         except ValueError:
-            result = "Invalid input, please enter a valid number."
+            error = f"Error: Invalid Input"
+            return render_template('formatter.html', error=error)
 
     return render_template('formatter.html', result=result, old=old)

@@ -15,7 +15,8 @@ def convert():
     data = request.form.get('data')
 
     if not data:
-        return jsonify({"error": "No data provided"})
+        error = f"Error: No data provided"
+        return render_template('json_to_excel.html', error=error)
 
     try:
         data_json = json.loads(data)
@@ -30,4 +31,5 @@ def convert():
         return send_file(output, as_attachment=True, download_name='output.xlsx')
 
     except Exception as e:
-        return jsonify({"error": f"Error: {str(e)}"})
+        error = f"Error: {str(e)}"
+        return render_template('json_to_excel.html', error=error)

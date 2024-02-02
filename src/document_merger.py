@@ -52,7 +52,8 @@ def merge_documents():
         if not isinstance(replacements, list):
             raise ValueError("Invalid replacements format")
     except Exception as e:
-        return f"Error: {str(e)}"
+        error = f"Error: {str(e)}"
+        return render_template('document_merger.html', error=error)
 
     # Determine the MIME type based on the file extension
     mime_type, _ = mimetypes.guess_type(document_file.filename)
@@ -65,7 +66,8 @@ def merge_documents():
     elif document_file.filename.lower().endswith('.docx'):
         modified_content = replace_text_in_docx(document_file, replacements)
     else:
-        return "Unsupported file format"
+        error = f"Error: Unsupported File Format"
+        return render_template('document_merger.html', error=error)
 
     # Return the modified document with the same file name and extension as the uploaded document
     return send_file(

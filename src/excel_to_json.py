@@ -13,12 +13,14 @@ def index():
 @excel_to_json.route('/', methods=['POST'])
 def convert():
     if 'file' not in request.files:
-        return jsonify({"error": "No file part"})
+        error = f"Error: No File Part"
+        return render_template('excel_to_json.html', error=error)
 
     file = request.files['file']
 
     if file.filename == '':
-        return jsonify({"error": "No selected file"})
+        error = f"Error: No Selected File"
+        return render_template('excel_to_json.html', error=error)
 
     try:
         # Read Excel file into a DataFrame
@@ -30,14 +32,16 @@ def convert():
         return render_template('excel_to_json.html', result=result)
 
     except Exception as e:
-        return jsonify({"error": f"Error: {str(e)}"})
+        error = f"Error: {str(e)}"
+        return render_template('excel_to_json.html', error=error)
 
 @excel_to_json.route('/download', methods=['GET', 'POST'])
 def download():
     data = request.form.get('data')
 
     if not data:
-        return jsonify({"error": "No data provided"})
+        error = f"Error: No Data Provided"
+        return render_template('excel_to_json.html', error=error)
 
     try:
         data_json = json.loads(data)
@@ -48,4 +52,5 @@ def download():
         return send_file(output, as_attachment=True, download_name='output.json', mimetype='application/json')
 
     except Exception as e:
-        return jsonify({"error": f"Error: {str(e)}"})
+        error = f"Error: {str(e)}"
+        return render_template('excel_to_json.html', error=error)

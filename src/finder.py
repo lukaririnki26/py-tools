@@ -26,7 +26,8 @@ def _finder(finder_input, finder_type):
         result = find_duplicate_sku(finder_input)
         return f"Duplicate SKU: ({result})"
     else:
-        return "Invalid finder type. Supported type."
+        error = f"Error: Invalid Finder Type"
+        return render_template('finder.html', error=error)
 
 @finder.route('/', methods=['GET', 'POST'])
 def finder_route():
@@ -41,6 +42,7 @@ def finder_route():
             result = _finder(finder_input, finder_type)
 
         except ValueError:
-            result = "Invalid input. Please enter a valid finder type."
+            error = f"Error: {str(e)}"
+            return render_template('finder.html', error=error)
 
     return render_template('finder.html', result=result, old=old)
