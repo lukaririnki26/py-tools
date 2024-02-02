@@ -1,0 +1,24 @@
+<!-- flask_app/templates/number_formatter.html -->
+{% extends 'layout.html' %}
+
+{% block title %}HTML Table To Excel{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">HTML Table To Excel</h2>
+
+    <form method="post" action="/html_table_to_excel">
+        <div class="form-group">
+            <label for="url">Enter Value:</label>
+            <button class="btn btn-outline-secondary mb-3" onclick="pasteToInput('url')">
+                <i class="fas fa-paste"></i>
+            </button>
+            <input type="url" name="url" id="url" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="html_id">Html ID:</label>
+            <input type="text" name="html_id" id="html_id" class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Find</button>
+    </form>
+{% endblock %}
