@@ -1,9 +1,9 @@
 {% extends 'layout.html' %}
 
-{% block title %}JSON To Excel{% endblock %}
+{% block title %}Stress Test{% endblock %}
 
 {% block content %}
-    <h2 class="mb-4">JSON To Excel</h2>
+    <h2 class="mb-4">Stress Test</h2>
 
     <form action="/stress_test" method="post">
         <div class="mb-3">
@@ -38,7 +38,7 @@
             <label for="range" class="form-label">Request Range:</label>
             <input type="number" name="range" class="form-control" value="50" required>
         </div>
-        <button type="submit" class="btn btn-primary">Convert to Excel</button>
+        <button type="submit" class="btn btn-primary">Test</button>
     </form>
 
     
