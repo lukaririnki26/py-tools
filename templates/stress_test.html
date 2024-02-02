@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+
+{% block title %}JSON To Excel{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">JSON To Excel</h2>
+
+    <form action="/stress_test" method="post">
+        <div class="mb-3">
+            <label for="method" class="form-label">HTTP Method:</label>
+            <select name="method" class="form-control" required>
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="url" class="form-label">URL:</label>
+            <input type="text" name="url" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="headers" class="form-label">Headers (JSON):</label>
+            <textarea name="headers" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="data" class="form-label">Data (JSON):</label>
+            <textarea name="data" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="workers" class="form-label">Number of Workers:</label>
+            <input type="number" name="workers" class="form-control" value="10" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="range" class="form-label">Request Range:</label>
+            <input type="number" name="range" class="form-control" value="50" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Convert to Excel</button>
+    </form>
+
+    
+{% endblock %}
