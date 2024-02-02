@@ -1,0 +1,49 @@
+<!-- flask_app/templates/number_formatter.html -->
+{% extends 'layout.html' %}
+
+{% block title %}HTML To PDF{% endblock %}
+
+{% block content %}
+    <h2 class="mb-4">HTML To PDF</h2>
+
+    <form method="post" action="/html_to_pdf">
+        <div class="form-group">
+            <label for="url">URL:</label>
+            <input type="url" name="url" class="form-control" placeholder="Enter URL" required>
+        </div>
+        <div class="form-group">
+            <label for="scale">Scale:</label>
+            <input type="number" step="0.1" min="0.1" name="scale" class="form-control" value="1.0" required>
+        </div>
+        <div class="form-group">
+            <label for="paper_size">Paper Size:</label>
+            <select name="paper_size" class="form-control">
+                <option value="A4">A4</option>
+                <option value="Legal">Legal</option>
+                <option value="Letter">Letter</option>
+                <option value="Tabloid">Tabloid</option>
+                <option value="A0">A0</option>
+                <option value="A1">A1</option>
+                <option value="A2">A2</option>
+                <option value="A3">A3</option>
+                <option value="A5">A5</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="layout">Layout:</label>
+            <select name="layout" class="form-control">
+                <option value="portrait">Portrait</option>
+                <option value="landscape">Landscape</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Convert to PDF</button>
+    </form>
+
+
+    {% if error %}
+        <div class="alert alert-danger mt-4" role="alert">
+            {{ error }}
+        </div>
+    {% endif %}
+    
+{% endblock %}
