@@ -1,0 +1,6 @@
+flask
+pandas
+requests
+openpyxl
+pdfkit
+python-docx
