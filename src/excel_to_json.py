@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, jsonify, send_file
 import pandas as pd
 import io
 import json
+import numpy as np
 
 excel_to_json = Blueprint('excel_to_json', __name__)
 
@@ -33,7 +34,7 @@ def convert():
         df = pd.read_excel(file, engine='openpyxl')
 
         # Replace NaN with None (which will be converted to null in JSON)
-        df = df.where(pd.notnull(df), None)
+        df.replace({pd.NA: None, np.nan: None}, inplace=True)
 
         # Create a custom JSON structure with custom keys or default to column names
         result = []
